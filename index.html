@@ -11,17 +11,9 @@
 <style>
   :root {
     box-sizing: border-box;
-    --bg1: #fff4e6;
-    --bg2: #e6f5ec;
-    --ink: #24352f;
-    --soft: #5f736b;
-    --card: #ffffff;
-    --line: #eadfce;
-    --green: #168a5b;
-    --green-ink: #ffffff;
-    --tint-g: #e3f4ea;
-    --tint-o: #ffe9d6;
-    --shadow: 0 6px 18px rgba(80, 60, 30, 0.10);
+    --bg1: #fff4e6; --bg2: #e6f5ec; --ink: #24352f; --soft: #5f736b;
+    --card: #ffffff; --line: #eadfce; --green: #168a5b; --green-ink: #ffffff;
+    --tint-g: #e3f4ea; --tint-o: #ffe9d6; --shadow: 0 6px 18px rgba(80, 60, 30, 0.10);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -39,13 +31,7 @@
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
-  .wrap {
-    min-height: 100%;
-    max-width: 440px;
-    margin: 0 auto;
-    padding: 28px 18px 32px;
-    display: flex; flex-direction: column; justify-content: center; gap: 22px;
-  }
+  .wrap { min-height: 100%; max-width: 440px; margin: 0 auto; padding: 28px 18px 32px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
   [hidden] { display: none !important; }
 
   .hero { text-align: center; }
@@ -53,14 +39,11 @@
   h1 { font-size: 26px; margin: 10px 0 6px; letter-spacing: -0.2px; }
   .sub { margin: 0; color: var(--soft); font-size: 15px; line-height: 1.5; }
 
+  .me { background: var(--tint-g); border-radius: 16px; padding: 12px 14px; font-size: 14.5px; line-height: 1.5; text-align: center; }
+  .me a { color: var(--soft); font-size: 12.5px; margin-left: 6px; }
+
   .steps { display: flex; flex-direction: column; gap: 14px; }
-  a.card {
-    display: flex; align-items: center; gap: 14px;
-    background: var(--card); border: 1px solid var(--line);
-    border-radius: 22px; padding: 18px 16px;
-    text-decoration: none; color: inherit; box-shadow: var(--shadow);
-    transition: transform .12s ease; -webkit-tap-highlight-color: transparent;
-  }
+  a.card { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 18px 16px; text-decoration: none; color: inherit; box-shadow: var(--shadow); transition: transform .12s ease; -webkit-tap-highlight-color: transparent; }
   a.card:active { transform: scale(0.97); }
   .badge { flex: 0 0 auto; width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
   .b1 { background: var(--tint-g); }
@@ -75,6 +58,7 @@
 
   .center { text-align: center; }
   .tick { width: 96px; height: 96px; margin: 0 auto 6px; border-radius: 50%; background: var(--tint-g); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 800; animation: pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+  .who { margin: 12px auto 0; display: inline-block; background: var(--tint-g); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; font-weight: 700; }
   .btn { display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 17px; padding: 17px 18px; border-radius: 18px; background: var(--green); color: var(--green-ink); box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent; }
   .btn:active { transform: scale(0.97); }
   .link { display: block; text-align: center; color: var(--soft); font-size: 14px; text-decoration: none; padding: 10px; }
@@ -98,14 +82,19 @@
     <p class="sub">Đăng ký ăn và gửi bill thanh toán,<br>chỉ vài chạm là xong 👆</p>
   </div>
 
+  <div class="me" id="me" hidden>
+    ✅ Hôm nay bạn đã đăng ký: <b id="me-name"></b><b id="me-ncc"></b>
+    <a href="#" id="me-clear">Không phải bạn?</a>
+  </div>
+
   <div class="steps">
-    <a class="card" href="https://www.cognitoforms.com/trươngvănthanh/đăngkýăntrưa2">
+    <a class="card" id="reg-card" href="https://www.cognitoforms.com/tr%C6%B0%C6%A1ngv%C4%83nthanh/%C4%91%C4%83ngk%C3%BDc%C6%A1mtr%C6%B0ab%C4%83ngvoucher">
       <div class="badge b1">📝</div>
       <div class="txt"><h2>1. Đăng ký ăn</h2><p>Chọn tên và nhà cung cấp (NCC)<br>Đăng ký trước 11h sáng</p></div>
       <div class="pill">Đăng ký</div>
     </a>
 
-    <a class="card" href="https://www.cognitoforms.com/trươngvănthanh/gửibillthanhtoán2">
+    <a class="card" id="bill-card" href="https://www.cognitoforms.com/tr%C6%B0%C6%A1ngv%C4%83nthanh/g%E1%BB%ADibillthanhto%C3%A1n2">
       <div class="badge b2">🧾</div>
       <div class="txt"><h2>2. Gửi bill</h2><p>Sau khi nhận cơm và quét QR<br>thanh toán trong nhóm Zalo</p></div>
       <div class="pill">Gửi bill</div>
@@ -113,7 +102,7 @@
   </div>
 
   <div class="how">
-    <b>Cách dùng:</b> bấm <b>Đăng ký</b> → chọn tên → chọn NCC. Nhận cơm, quét QR thanh toán xong thì mở lại trang này, bấm <b>Gửi bill</b> → chọn tên → tải ảnh bill lên → <b>Thanh toán</b>.
+    <b>Cách dùng:</b> bấm <b>Đăng ký</b> → chọn tên → chọn NCC. Nhận cơm, quét QR thanh toán xong thì mở lại trang này, bấm <b>Gửi bill</b> → tải ảnh bill lên → <b>Thanh toán</b>. Trang sẽ nhớ tên bạn trong ngày để khỏi chọn lại.
   </div>
 </main>
 
@@ -127,10 +116,11 @@
   <div>
     <div class="tick">✓</div>
     <h1>Đăng ký thành công!</h1>
-    <p class="sub">Khi nhận cơm và thanh toán QR xong,<br>bấm nút bên dưới để gửi ảnh bill nhé.</p>
+    <p class="who" id="reg-who" hidden></p>
+    <p class="sub" style="margin-top:12px">Khi nhận cơm và thanh toán QR xong,<br>bấm nút bên dưới để gửi ảnh bill nhé.</p>
   </div>
   <div>
-    <a class="btn" href="https://www.cognitoforms.com/trươngvănthanh/gửibillthanhtoán2">🧾 Gửi ảnh bill thanh toán</a>
+    <a class="btn" id="bill-btn" href="https://www.cognitoforms.com/tr%C6%B0%C6%A1ngv%C4%83nthanh/g%E1%BB%ADibillthanhto%C3%A1n2">🧾 Gửi ảnh bill thanh toán</a>
     <a class="link" href="#">← Về trang chính</a>
   </div>
 </main>
@@ -152,15 +142,57 @@
 
 <script>
   (function () {
+    var BILL = 'https://www.cognitoforms.com/tr%C6%B0%C6%A1ngv%C4%83nthanh/g%E1%BB%ADibillthanhto%C3%A1n2';
+    var NAME_FIELD = 'HọVàTên';   // tên nội bộ của ô "Họ và tên" trong form gửi bill
+    var KEY = 'vcs_reg';
     var views = { home: 'v-home', registered: 'v-registered', done: 'v-done' };
+    function $(id) { return document.getElementById(id); }
+
+    function today() { var d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+    function load() {
+      try {
+        var m = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (m && m.ten && m.day === today()) return m;
+      } catch (e) {}
+      return null;
+    }
+    function save(m) { try { localStorage.setItem(KEY, JSON.stringify(m)); } catch (e) {} }
+    function clearMem() { try { localStorage.removeItem(KEY); } catch (e) {} }
+
+    function billHref(m) {
+      if (!m) return BILL;
+      var o = {}; o[NAME_FIELD] = m.ten;
+      return BILL + '?entry=' + encodeURIComponent(JSON.stringify(o));
+    }
+
+    // Nhận tên + NCC do form đăng ký chuyển về qua địa chỉ trang (?ten=...&ncc=...)
+    try {
+      var q = new URLSearchParams(location.search);
+      var ten = (q.get('ten') || '').trim();
+      var ncc = (q.get('ncc') || '').trim();
+      if (ten) {
+        save({ ten: ten, ncc: ncc, day: today() });
+        history.replaceState(null, '', location.pathname + location.hash);
+      }
+    } catch (e) {}
+
     function render() {
       var h = (location.hash || '').replace('#', '');
       var key = h === 'dang-ky-xong' ? 'registered' : h === 'hoan-tat' ? 'done' : 'home';
-      Object.keys(views).forEach(function (k) {
-        document.getElementById(views[k]).hidden = (k !== key);
-      });
+      Object.keys(views).forEach(function (k) { $(views[k]).hidden = (k !== key); });
+
+      var m = load();
+      var nccText = m && m.ncc ? ' · ' + m.ncc : '';
+      $('me').hidden = !(m && key === 'home');
+      if (m) { $('me-name').textContent = m.ten; $('me-ncc').textContent = nccText; }
+      $('reg-who').hidden = !m;
+      if (m) $('reg-who').textContent = 'Đã ghi nhận: ' + m.ten + nccText;
+      $('bill-card').href = billHref(m);
+      $('bill-btn').href = billHref(m);
       window.scrollTo(0, 0);
     }
+
+    $('me-clear').addEventListener('click', function (e) { e.preventDefault(); clearMem(); render(); });
     window.addEventListener('hashchange', render);
     render();
   })();
