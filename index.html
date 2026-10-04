@@ -144,6 +144,7 @@
   (function () {
     var BILL = 'https://www.cognitoforms.com/tr%C6%B0%C6%A1ngv%C4%83nthanh/g%E1%BB%ADibillthanhto%C3%A1n2';
     var NAME_FIELD = 'HọVàTên';   // tên nội bộ của ô "Họ và tên" trong form gửi bill
+    var NCC_FIELD = 'NCC';        // tên nội bộ của ô "NCC" trong form gửi bill
     var KEY = 'vcs_reg';
     var views = { home: 'v-home', registered: 'v-registered', done: 'v-done' };
     function $(id) { return document.getElementById(id); }
@@ -162,6 +163,7 @@
     function billHref(m) {
       if (!m) return BILL;
       var o = {}; o[NAME_FIELD] = m.ten;
+      if (m.ncc) o[NCC_FIELD] = m.ncc;
       return BILL + '?entry=' + encodeURIComponent(JSON.stringify(o));
     }
 
