@@ -143,8 +143,8 @@
 <script>
   (function () {
     var BILL = 'https://www.cognitoforms.com/badboy5/g%E1%BB%ADibillthanhto%C3%A1n2';
-    var NAME_FIELD = 'HọVàTên';   // tên nội bộ của ô "Họ và tên" trong form gửi bill
-    var NCC_FIELD = 'ChọnNCC';    // tên nội bộ của ô "Chọn NCC" trong form gửi bill (xem bằng Developer Mode)
+    var NAME_FIELDS = ['HoVaTen', 'HọVàTên'];   // tên nội bộ có thể có của ô "Họ và tên" (form tạo trên web thường không dấu)
+    var NCC_FIELD = 'ChonNCC';    // tên nội bộ của ô "Chọn NCC" trong form gửi bill (đã xác nhận)
     var KEY = 'vcs_reg';
     var views = { home: 'v-home', registered: 'v-registered', done: 'v-done' };
     function $(id) { return document.getElementById(id); }
@@ -162,7 +162,8 @@
 
     function billHref(m) {
       if (!m) return BILL;
-      var o = {}; o[NAME_FIELD] = m.ten;
+      var o = {};
+      NAME_FIELDS.forEach(function (k) { o[k] = m.ten; });
       if (m.ncc) o[NCC_FIELD] = m.ncc;
       return BILL + '?entry=' + encodeURIComponent(JSON.stringify(o));
     }
