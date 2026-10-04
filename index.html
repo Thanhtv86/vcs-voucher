@@ -31,7 +31,8 @@
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
-  .wrap { min-height: 100%; max-width: 440px; margin: 0 auto; padding: 28px 18px 32px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .wrap { min-height: 100%; max-width: 480px; margin: 0 auto; padding: 28px 18px 32px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .wrap.top { justify-content: flex-start; padding-top: 16px; gap: 14px; }
   [hidden] { display: none !important; }
 
   .hero { text-align: center; }
@@ -55,6 +56,14 @@
 
   .how { background: var(--card); opacity: .92; border: 1px dashed var(--line); border-radius: 18px; padding: 14px 16px; font-size: 13.5px; color: var(--soft); line-height: 1.6; }
   .how b { color: var(--ink); }
+
+  .back { align-self: flex-start; color: var(--soft); text-decoration: none; font-size: 14px; padding: 8px 4px; }
+  .ttl { font-size: 21px; font-weight: 800; margin: 0; }
+  .host { background: #ffffff; color: #1a2b24; border-radius: 18px; padding: 6px; box-shadow: var(--shadow); min-height: 140px; }
+  .status { text-align: center; color: var(--soft); font-size: 14px; padding: 6px; }
+  .fb { text-align: center; font-size: 13px; color: var(--soft); line-height: 1.6; }
+  .fb a { color: var(--green); font-weight: 700; }
+  .hint { font-size: 13px; color: var(--soft); text-align: center; line-height: 1.5; margin: 0; }
 
   .center { text-align: center; }
   .tick { width: 96px; height: 96px; margin: 0 auto 6px; border-radius: 50%; background: var(--tint-g); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 800; animation: pop .5s cubic-bezier(.2,1.4,.4,1) both; }
@@ -88,13 +97,13 @@
   </div>
 
   <div class="steps">
-    <a class="card" id="reg-card" href="https://www.cognitoforms.com/badboy5/%C4%91%C4%83ngk%C3%BDc%C6%A1mtr%C6%B0ab%C4%83ngvoucher">
+    <a class="card" href="#dang-ky">
       <div class="badge b1">📝</div>
       <div class="txt"><h2>1. Đăng ký ăn</h2><p>Chọn tên và nhà cung cấp (NCC)<br>Đăng ký trước 11h sáng</p></div>
       <div class="pill">Đăng ký</div>
     </a>
 
-    <a class="card" id="bill-card" href="https://www.cognitoforms.com/badboy5/g%E1%BB%ADibillthanhto%C3%A1n2">
+    <a class="card" href="#gui-bill">
       <div class="badge b2">🧾</div>
       <div class="txt"><h2>2. Gửi bill</h2><p>Sau khi nhận cơm và quét QR<br>thanh toán trong nhóm Zalo</p></div>
       <div class="pill">Gửi bill</div>
@@ -102,8 +111,17 @@
   </div>
 
   <div class="how">
-    <b>Cách dùng:</b> bấm <b>Đăng ký</b> → chọn tên → chọn NCC. Nhận cơm, quét QR thanh toán xong thì mở lại trang này, bấm <b>Gửi bill</b> → tải ảnh bill lên → <b>Thanh toán</b>. Trang sẽ nhớ tên bạn trong ngày để khỏi chọn lại.
+    <b>Cách dùng:</b> bấm <b>Đăng ký</b> → chọn tên và NCC. Nhận cơm, quét QR thanh toán xong thì mở lại trang này, bấm <b>Gửi bill</b> → tải ảnh bill lên → <b>Thanh toán</b>. Trang sẽ nhớ tên và NCC của bạn trong ngày để khỏi chọn lại.
   </div>
+</main>
+
+<!-- FORM ĐĂNG KÝ -->
+<main class="wrap top" id="v-reg" hidden>
+  <a class="back" href="#">← Về trang chính</a>
+  <h2 class="ttl">📝 Đăng ký ăn</h2>
+  <p class="status" id="reg-status">Đang tải form…</p>
+  <div class="host" id="reg-host"></div>
+  <p class="fb">Không thấy form? <a href="https://www.cognitoforms.com/badboy5/%C4%91%C4%83ngk%C3%BDc%C6%A1mtr%C6%B0ab%C4%83ngvoucher" target="_blank" rel="noopener">Bấm đây để mở trực tiếp</a></p>
 </main>
 
 <!-- ĐĂNG KÝ XONG -->
@@ -120,9 +138,20 @@
     <p class="sub" style="margin-top:12px">Khi nhận cơm và thanh toán QR xong,<br>bấm nút bên dưới để gửi ảnh bill nhé.</p>
   </div>
   <div>
-    <a class="btn" id="bill-btn" href="https://www.cognitoforms.com/badboy5/g%E1%BB%ADibillthanhto%C3%A1n2">🧾 Gửi ảnh bill thanh toán</a>
+    <a class="btn" href="#gui-bill">🧾 Gửi ảnh bill thanh toán</a>
     <a class="link" href="#">← Về trang chính</a>
   </div>
+</main>
+
+<!-- FORM GỬI BILL -->
+<main class="wrap top" id="v-bill" hidden>
+  <a class="back" href="#">← Về trang chính</a>
+  <h2 class="ttl">🧾 Gửi ảnh bill</h2>
+  <p class="who" id="bill-who" hidden style="margin:0;align-self:flex-start"></p>
+  <p class="hint" id="bill-hint" hidden>Máy này chưa có đăng ký hôm nay. Bạn cứ chọn tên và gửi bill, NCC sẽ được ghép theo đăng ký của bạn.</p>
+  <p class="status" id="bill-status">Đang tải form…</p>
+  <div class="host" id="bill-host"></div>
+  <p class="fb">Không thấy form? <a href="https://www.cognitoforms.com/badboy5/g%E1%BB%ADibillthanhto%C3%A1n2" target="_blank" rel="noopener">Bấm đây để mở trực tiếp</a></p>
 </main>
 
 <!-- HOÀN TẤT -->
@@ -142,46 +171,135 @@
 
 <script>
   (function () {
-    var BILL = 'https://www.cognitoforms.com/badboy5/g%E1%BB%ADibillthanhto%C3%A1n2';
-    var NAME_FIELDS = ['HoVaTen', 'HọVàTên'];   // tên nội bộ có thể có của ô "Họ và tên" (form tạo trên web thường không dấu)
-    var NCC_FIELD = 'ChonNCC';    // tên nội bộ của ô "Chọn NCC" trong form gửi bill (đã xác nhận)
-    var KEY = 'vcs_reg';
-    var views = { home: 'v-home', registered: 'v-registered', done: 'v-done' };
+    // ---- Cấu hình (lấy từ mã nhúng của Cognito Forms) ----
+    var KEY = 'miTG2SqX1E66AjdqcQraRg';
+    var REG_FORM = '3';      // form "Đăng ký cơm trưa"
+    var BILL_FORM = '4';     // form "Gửi bill thanh toán"
+    var NAME_KEY = 'HọVàTên';  // tên nội bộ ô "Họ và tên"
+    var NCC_KEY = 'ChonNCC';   // tên nội bộ ô "Chọn NCC"
+    var SEAMLESS = 'https://www.cognitoforms.com/f/seamless.js';
+    var STORE = 'vcs_reg';
+
     function $(id) { return document.getElementById(id); }
 
+    // ---- Bộ nhớ trong ngày trên điện thoại ----
     function today() { var d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
     function load() {
       try {
-        var m = JSON.parse(localStorage.getItem(KEY) || 'null');
+        var m = JSON.parse(localStorage.getItem(STORE) || 'null');
         if (m && m.ten && m.day === today()) return m;
       } catch (e) {}
       return null;
     }
-    function save(m) { try { localStorage.setItem(KEY, JSON.stringify(m)); } catch (e) {} }
-    function clearMem() { try { localStorage.removeItem(KEY); } catch (e) {} }
+    function save(m) { try { localStorage.setItem(STORE, JSON.stringify(m)); } catch (e) {} }
+    function clearMem() { try { localStorage.removeItem(STORE); } catch (e) {} }
 
-    function billHref(m) {
-      if (!m) return BILL;
-      var o = {};
-      NAME_FIELDS.forEach(function (k) { o[k] = m.ten; });
-      if (m.ncc) o[NCC_FIELD] = m.ncc;
-      return BILL + '?entry=' + encodeURIComponent(JSON.stringify(o));
+    // ---- Đọc dữ liệu entry do Cognito trả về ----
+    function str(v) {
+      if (v == null) return '';
+      if (typeof v === 'string') return v.trim();
+      if (typeof v === 'object') {
+        if (v.Value != null) return str(v.Value);
+        if (v.Label != null) return str(v.Label);
+      }
+      return String(v);
+    }
+    function strip(s) {
+      return s.normalize ? s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D') : s;
+    }
+    function pick(entry, keys, re) {
+      var i, v;
+      for (i = 0; i < keys.length; i++) { if (entry[keys[i]]) { v = str(entry[keys[i]]); if (v) return v; } }
+      for (var k in entry) {
+        if (re.test(strip(k).toLowerCase()) && entry[k]) { v = str(entry[k]); if (v) return v; }
+      }
+      return '';
     }
 
-    // Nhận tên + NCC do form đăng ký chuyển về qua địa chỉ trang (?ten=...&ncc=...)
-    try {
-      var q = new URLSearchParams(location.search);
-      var ten = (q.get('ten') || '').trim();
-      var ncc = (q.get('ncc') || '').trim();
-      if (ten) {
-        save({ ten: ten, ncc: ncc, day: today() });
-        history.replaceState(null, '', location.pathname + location.hash);
-      }
-    } catch (e) {}
+    // ---- Nạp thư viện nhúng của Cognito ----
+    var api = null, apiState = 'idle', waiting = [];
+    function flush(ok) {
+      var w = waiting; waiting = [];
+      w.forEach(function (x) { if (ok) x.ok(api); else x.fail(); });
+    }
+    function ready() {
+      try { api = window.Cognito(KEY); apiState = 'ready'; flush(true); }
+      catch (e) { apiState = 'failed'; flush(false); }
+    }
+    function withApi(ok, fail) {
+      if (apiState === 'ready') return ok(api);
+      if (apiState === 'failed') return fail();
+      waiting.push({ ok: ok, fail: fail });
+      if (apiState === 'loading') return;
+      apiState = 'loading';
+      if (window.Cognito) return ready();
+      var s = document.createElement('script');
+      s.src = SEAMLESS; s.async = true;
+      s.onload = ready;
+      s.onerror = function () { apiState = 'failed'; flush(false); };
+      document.head.appendChild(s);
+    }
+
+    // ---- Gắn form vào trang ----
+    var mounts = { reg: { n: 0, on: false, done: false, sig: '' }, bill: { n: 0, on: false, done: false, sig: '' } };
+
+    function onAfterSubmit(form, fn) {
+      if (form && typeof form.on === 'function') form.on('afterSubmit', fn);
+      else if (window.Cognito && typeof window.Cognito.on === 'function') window.Cognito.on('afterSubmit', fn);
+    }
+    function doPrefill(form, data) {
+      try {
+        if (form && typeof form.prefill === 'function') form.prefill(data);
+        else if (window.Cognito && typeof window.Cognito.prefill === 'function') window.Cognito.prefill(data);
+      } catch (e) {}
+    }
+
+    function mountForm(kind) {
+      var m = mounts[kind];
+      var mem = load();
+      var sig = kind === 'bill' ? (mem ? mem.ten + '|' + mem.ncc : '') : '';
+      if (m.on && !m.done && m.sig === sig) return;      // form đang điền dở, giữ nguyên
+      m.n += 1; var myN = m.n;
+      m.on = true; m.done = false; m.sig = sig;
+      var host = $(kind + '-host'), status = $(kind + '-status');
+      host.innerHTML = '';
+      status.hidden = false; status.textContent = 'Đang tải form…';
+
+      withApi(function (a) {
+        var form = a.mount(kind === 'reg' ? REG_FORM : BILL_FORM, '#' + host.id);
+        status.hidden = true;
+        if (kind === 'bill' && mem) {
+          var data = {}; data[NAME_KEY] = mem.ten;
+          if (mem.ncc) data[NCC_KEY] = mem.ncc;
+          doPrefill(form, data);
+        }
+        onAfterSubmit(form, function (e) {
+          if (myN !== m.n || m.done) return;
+          m.done = true;
+          if (kind === 'reg') {
+            var en = (e && e.data && e.data.entry) || {};
+            var ten = pick(en, [NAME_KEY], /hovaten|hoten|^ten$/);
+            var ncc = pick(en, [NCC_KEY], /ncc/);
+            if (ten) save({ ten: ten, ncc: ncc, day: today() });
+            location.hash = '#dang-ky-xong';
+          } else {
+            location.hash = '#hoan-tat';
+          }
+        });
+      }, function () {
+        m.on = false;
+        status.hidden = false;
+        status.textContent = 'Không tải được form. Hãy bấm nút mở trực tiếp bên dưới.';
+      });
+    }
+
+    // ---- Chuyển màn hình ----
+    var views = { home: 'v-home', reg: 'v-reg', registered: 'v-registered', bill: 'v-bill', done: 'v-done' };
+    var routes = { 'dang-ky': 'reg', 'dang-ky-xong': 'registered', 'gui-bill': 'bill', 'hoan-tat': 'done' };
 
     function render() {
       var h = (location.hash || '').replace('#', '');
-      var key = h === 'dang-ky-xong' ? 'registered' : h === 'hoan-tat' ? 'done' : 'home';
+      var key = routes[h] || 'home';
       Object.keys(views).forEach(function (k) { $(views[k]).hidden = (k !== key); });
 
       var m = load();
@@ -190,8 +308,12 @@
       if (m) { $('me-name').textContent = m.ten; $('me-ncc').textContent = nccText; }
       $('reg-who').hidden = !m;
       if (m) $('reg-who').textContent = 'Đã ghi nhận: ' + m.ten + nccText;
-      $('bill-card').href = billHref(m);
-      $('bill-btn').href = billHref(m);
+      $('bill-who').hidden = !m;
+      if (m) $('bill-who').textContent = 'Gửi bill cho: ' + m.ten + nccText;
+      $('bill-hint').hidden = !!m;
+
+      if (key === 'reg') mountForm('reg');
+      if (key === 'bill') mountForm('bill');
       window.scrollTo(0, 0);
     }
 
